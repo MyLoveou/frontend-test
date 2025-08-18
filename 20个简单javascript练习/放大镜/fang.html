@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #smallImg {
+            width: 300px;
+            height: 300px;
+            background-image: url(./lou.jpg);
+            background-size: cover;
+        }
+
+        #smallDiv {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 0, 0, .2);
+            display: none;
+            position: absolute;
+        }
+
+        #bigDiv {
+            width: 300px;
+            height: 300px;
+            /* border: 1px solid red; */
+            position: absolute;
+            left: 300px;
+            top: 0px;
+            overflow: hidden;
+            display: none;
+        }
+
+        #bigImg {
+            width: 900px;
+            height: 900px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="fang">
+        <div id="smallImg">
+            <div id="smallDiv"></div>
+        </div>
+
+        <div id="bigDiv">
+            <img src="./lou.jpg" alt="" id="bigImg">
+        </div>
+    </div>
+
+
+    <script>
+        // 三个核心功能
+        // 1
+        // 鼠标移入时，出现小的div（遮挡层）和大div（展示效果的区域）
+        // 鼠标移出时，隐藏小div和大div
+        let smallImg = document.getElementById("smallImg")
+        let smallDiv = document.getElementById("smallDiv")
+        let bigDiv = document.getElementById("bigDiv")
+        let bigImg = document.getElementById('bigImg')
+        smallImg.onmouseover = function () {
+            smallDiv.style.display = 'block'
+            bigDiv.style.display = 'block'
+            // 对移动范围进行判断
+
+        }
+        smallImg.onmouseout = function () {
+            smallDiv.style.display = 'none'
+            bigDiv.style.display = 'none'
+        }
+        // 2
+        // 小div移动方向与大div移动方向相反
+        // 小div/小图 = 大div/大图
+        smallImg.onmousemove = function (e) {
+            // 先完成鼠标绑定遮挡层
+            let event = e || window.event // 考虑兼容性
+            // 小div移动
+            // 鼠标移动距离大于遮挡层大移动距离
+            const x = event.clientX - smallDiv.clientWidth / 2
+            const y = event.clientY - smallDiv.clientHeight / 2
+            if(x>=200){
+                x=200
+            }
+            if(x<=0){
+                x=0
+            }
+            if(y>=200){
+                y=200
+            }
+            if(y<=0){
+                y=0
+            }
+            smallDiv.style.left = x + 'px'
+            smallDiv.style.top = y + 'px'
+
+            // 大图移动
+            bigImg.style.left = -3*x + 'px'
+            bigImg.style.top = -3*y + 'px'
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #fa {
+      width: 600px;
+      height: 600px;
+      border: 1px solid red;
+    }
+
+    #fa>div {
+      width: 33%;
+      height: 33%;
+      border: 1px solid red;
+      float: left;
+      line-height: 200px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    #start {
+      cursor: pointer;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="fa">
+    <div class="option">仓井老师</div>
+    <div class="option">波多老师</div>
+    <div class="option">武藤老师</div>
+    <div class="option">小泽老师</div>
+    <div id="start">开始抽奖</div>
+    <div class="option">相泽南</div>
+    <div class="option">三上悠亚</div>
+    <div class="option">桥本有才</div>
+    <div class="option">泷泽老师</div>
+  </div>
+
+  <script>
+    // 点击开始触发定时器
+    // 定时器内部获取随机数来指定奖品所在元素
+    // 设置一个时间点，停止定时器
+    let but = document.getElementById('start')
+    let options = document.getElementsByClassName('option')
+    but.onclick = function () {
+      let temp = null
+      let timer = null
+      let num = 0
+      if (timer == null) {
+        timer = setInterval(() => {
+          num++
+          // 随机0-7的数，通过数组下标获取具体选中的元素
+          let ran = Math.round(Math.random() * (7 - 0) + 0)
+          // 把先前的元素样式恢复
+          if (temp || temp == 0) {
+            options[temp].style.backgroundColor = 'white'
+          }
+          // 给选中元素添加样式
+          options[ran].style.backgroundColor = 'orange'
+          temp = ran
+          // 给定时器设置时间，停止定时器
+          if (num >= 10) { // 业务要求
+            clearInterval(timer)
+            timer = null
+          }
+        }, 100)
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>

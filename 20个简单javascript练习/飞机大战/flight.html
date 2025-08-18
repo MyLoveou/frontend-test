@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box {
+			width: 512px;
+			height: 536px;
+			border: 1px solid red;
+			background: url('./bg2.jpg') no-repeat 0px -1000px;
+			position: relative;
+		}
+
+		#img {
+			position: absolute;
+			bottom: 100px;
+			left: 200px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">
+		<img src="./me.png" alt="" id="img">
+	</div>
+
+	<script>
+		// 背景图片下移
+		let box = document.getElementById('box')
+		// box.style.backgroundPosition = '40px 100px'
+		let timer = null
+		let num = 0
+		timer = setInterval(() => {
+			num++
+			if(num>=1000) num=0
+			box.style.backgroundPosition = '0px ' + (-1000 + num) + 'px'
+
+		}, 10)
+
+		// 2. 控制小飞机前后左右移动
+		let img = document.getElementById('img')
+		window.document.onkeydown = function(e){
+			let event = e || window.event
+			// 前进
+			if(event.keyCode == 38){
+				// offset client scroll
+				// offsetTop 可以算出一个元素到父级的顶部距离（父级必须要有position属性）
+				let top = img.offsetTop -10
+				if(top <= 20) top = 20
+				img.style.top = top +'px'
+			}
+			if(event.keyCode == 40){
+				let top = img.offsetTop + 10
+				if(top>= 400) top=400
+				img.style.top = top + 'px' 
+			}
+			if(event.keyCode == 37){
+				let left = img.offsetLeft - 10
+				if(left<=20)left=20
+				img.style.left = left+'px'
+			}
+			if(event.keyCode == 39){
+				let right = img.offsetLeft + 10
+				if(right>=350)right=350
+				img.style.left = right + 'px'
+			}
+		}
+	</script>
+</body>
+
+</html>
