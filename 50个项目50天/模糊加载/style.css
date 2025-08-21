@@ -1,0 +1,29 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+.bg{
+  /* 只有在设置了宽高后才能显示图片 */
+  background: url("https://pic1.zhimg.com/v2-a58fa2ab84be291418da2652805f8270_b.jpg") no-repeat center center/cover;
+  position: absolute;
+  top: -30x;
+  left: -30px;
+  width: calc(100vw + 60px);
+  height: calc(100vh + 60px);
+  z-index: -1;
+  /* 图片模糊 */
+  filter: blur(10px);
+}
+
+.loading-text{
+  font-size: 50px;
+  color: rgb(192, 29, 29);
+}
