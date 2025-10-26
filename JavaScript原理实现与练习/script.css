@@ -1,0 +1,17 @@
+.test{
+  width: 0;
+  height: 9;
+  border-style: solid;
+  border-width: 0 50px 50px;
+  border-color: transparent transparent #d954fd;
+}
+
+.test::after{
+  content: '';
+  border-style: solid;
+  border-width: 0 40px 40px;
+  border-color: transparent transparent #96ceb4;
+  position: absolute;
+  top: 15px;
+  left: 19px;
+}
